@@ -1,4 +1,4 @@
-import { type Item } from "./getData";
+import { type Item } from "./getData.ts";
 
 const sendNotification = async (lastData: Item, users: Array<any>) => {
   try {
