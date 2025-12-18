@@ -20,10 +20,10 @@ export type Adv = {
   price: string;
   initAmount: any;
   surplusAmount: string;
-  tradableQuantity: string;
+  tradableQuantity: number;
   amountAfterEditing: any;
-  maxSingleTransAmount: string;
-  minSingleTransAmount: string;
+  maxSingleTransAmount: number;
+  minSingleTransAmount: number;
   buyerKycLimit: any;
   buyerRegDaysLimit: any;
   buyerBtcPositionLimit: any;
@@ -181,7 +181,12 @@ const getBuySellData = async (type: "SELL" | "BUY"): Promise<Array<Item>> => {
         return !item.privilegeType;
       })
       .filter((item) => {
-        return item.advertiser.monthOrderCount > 100;
+        return (
+          item.advertiser.monthOrderCount > 100 &&
+          item.adv.tradableQuantity > 100 &&
+          item.adv.maxSingleTransAmount >= 1000 &&
+          item.adv.minSingleTransAmount <= 25000
+        );
       })
       .map((item) => {
         const { adv, advertiser } = item;
