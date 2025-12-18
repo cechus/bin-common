@@ -1,6 +1,9 @@
-import { type Item } from "./getData.ts";
+import type { Item } from "./mod.ts";
 
-const sendNotification = async (lastData: Item, users: Array<any>) => {
+const sendNotification = async (
+  lastData: Item,
+  users: Array<{ notificationId: number; chatId: number; price: number }>
+) => {
   try {
     if (!lastData) {
       return;
@@ -26,7 +29,6 @@ Available: ${lastData.advertiser.tradableQuantity} USDT
           `;
       try {
         await fetch(
-          // @ts-ignore
           `https://api.telegram.org/bot${Deno.env.get(
             "TELEGRAM_API_BOT"
           )}/sendMessage`,
