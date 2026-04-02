@@ -148,7 +148,7 @@ const getBuySellData = async (type: "SELL" | "BUY"): Promise<Array<Item>> => {
       body: JSON.stringify({
         fiat: "BOB",
         page: 1,
-        rows: 20,
+        rows: 10,
         tradeType: type,
         asset: "USDT",
         countries: [],
@@ -164,7 +164,7 @@ const getBuySellData = async (type: "SELL" | "BUY"): Promise<Array<Item>> => {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
-    }
+    },
   );
   if (!jsonResponse.ok) {
     console.log(jsonResponse.json());
